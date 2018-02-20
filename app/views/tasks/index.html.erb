@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Tasks</h1>
+
+  <ul class="list-unstyled">
+    <% @tasks.each do |task| %>
+      <li>
+        <% if task.completed == true %>
+          <input type="checkbox" checked>
+        <% else %>
+          <input type="checkbox" unchecked>
+        <% end %>
+        <%= link_to task.title, task_path(task) %>
+
+        <%= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+         <i class="far fa-trash-alt"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Add new task", new_task_path %>
+</div>
